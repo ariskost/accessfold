@@ -14,7 +14,8 @@ git pull origin main
 
 # ── BACKEND (Laravel) ──
 echo ""
-echo "🔧 Updating Backend..."
+echo "🔧 Updating Backend (Using Plesk PHP 8.3)..."
+export PATH="/opt/plesk/php/8.3/bin:$PATH"
 cd ~/accessfold.unionfold.com/backend
 composer update --no-dev --optimize-autoloader --no-interaction
 php artisan migrate --force
