@@ -5,7 +5,10 @@
         <!-- Logo -->
         <div class="flex-shrink-0 flex items-center">
           <router-link to="/" class="flex items-center gap-2 group">
-            <img src="/logo/AccessFold_Logo_Default.png" alt="AccessFold Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+            <div class="w-10 h-10 bg-gradient-to-br from-brand-500 to-accent-500 rounded-xl flex items-center justify-center text-white shadow-sm group-hover:shadow-md transition-shadow">
+              <img src="/logo/AccessFold_Logo_Default.png" alt="AccessFold Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+            </div>
+            AccessFold
           </router-link>
         </div>
 

@@ -4,7 +4,10 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
         <div class="col-span-2 md:col-span-1">
            <div class="flex items-center gap-2 mb-4">
-             <img src="/logo/AccessFold_Logo_Default.png" alt="AccessFold Logo" class="h-9 w-auto object-contain" />
+             <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-accent-500 rounded-lg flex items-center justify-center text-white">
+                <img src="/logo/AccessFold_Logo_Default.png" alt="AccessFold Logo" class="h-9 w-auto object-contain" />
+              </div>
+              AccessFold
           </div>
           <p class="text-brand-500 text-[15px] leading-relaxed">
             Making the web accessible for everyone,<br>one line of code at a time.

@@ -49,6 +49,7 @@ export class WidgetUI {
       <div class="af-header">
         <h2 class="af-title">
           <img src="https://accessfold.unionfold.com/logo/AccessFold_Logo_Default.png" alt="Accessibility Fold" style="height: 24px; width: auto; object-fit: contain;" />
+          AccessFold
         </h2>
         <button class="af-reset-btn" id="af-reset">Reset All</button>
       </div>
@@ -114,7 +115,7 @@ export class WidgetUI {
 
       </div>
       <div class="af-footer">
-        Powered by Accessibility Fold
+        Powered by AccessFold
       </div>
     `;
 
