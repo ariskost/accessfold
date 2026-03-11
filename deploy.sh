@@ -22,7 +22,7 @@ php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-chmod -R 775 storage bootstrap/cache 2>/dev/null
+chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 echo "  ✅ Backend updated"
 
 # ── WIDGET CDN ──
@@ -34,7 +34,7 @@ npm run build
 mkdir -p cdn
 cp dist/accessibility-fold.umd.js cdn/
 cp dist/accessibility-fold.es.js cdn/
-cp dist/accessibility-fold.css cdn/ 2>/dev/null
+cp dist/accessibility-fold.css cdn/ 2>/dev/null || true
 echo "  ✅ Widget CDN updated"
 
 # ── MARKETING WEBSITE ──
@@ -44,7 +44,7 @@ cd ~/accessfold.unionfold.com/www
 npm install
 npm run build
 mkdir -p ~/accessfold.unionfold.com/public_html
-rm -rf ~/accessfold.unionfold.com/public_html/*
+rm -rf ~/accessfold.unionfold.com/public_html/* 2>/dev/null || true
 cp -r dist/* ~/accessfold.unionfold.com/public_html/
 echo "  ✅ Website updated"
 
