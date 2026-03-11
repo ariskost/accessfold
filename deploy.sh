@@ -16,7 +16,7 @@ git pull origin main
 echo ""
 echo "🔧 Updating Backend..."
 cd ~/accessfold.unionfold.com/backend
-composer install --no-dev --optimize-autoloader --no-interaction
+composer update --no-dev --optimize-autoloader --no-interaction
 php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
@@ -28,7 +28,7 @@ echo "  ✅ Backend updated"
 echo ""
 echo "📦 Updating Widget CDN..."
 cd ~/accessfold.unionfold.com/widget
-npm ci --production 2>/dev/null || npm install --production
+npm install
 npm run build
 mkdir -p cdn
 cp dist/accessibility-fold.umd.js cdn/
@@ -40,7 +40,7 @@ echo "  ✅ Widget CDN updated"
 echo ""
 echo "🌐 Updating Website..."
 cd ~/accessfold.unionfold.com/www
-npm ci --production 2>/dev/null || npm install --production
+npm install
 npm run build
 mkdir -p ~/accessfold.unionfold.com/public_html
 rm -rf ~/accessfold.unionfold.com/public_html/*
@@ -51,7 +51,7 @@ echo "  ✅ Website updated"
 echo ""
 echo "📊 Updating Dashboard..."
 cd ~/accessfold.unionfold.com/dashboard
-npm ci 2>/dev/null || npm install
+npm install
 npm run build
 if pm2 describe accessfold-dashboard > /dev/null 2>&1; then
     pm2 restart accessfold-dashboard
