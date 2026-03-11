@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Fold Widget Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 { color: #333; }
+    p { color: #666; }
+    .feature-box {
+      background: #f4f4f4;
+      padding: 20px;
+      border-left: 5px solid #4f46e5;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Accessibility Fold Demo</h1>
+  <p>This page demonstrates the standalone accessibility widget.</p>
+  
+  <div class="feature-box">
+    <h2>Test Section</h2>
+    <p>Try using the widget to change text size, contrast, or pause animations.</p>
+    <a href="#">This is a test link</a>
+    <button>Test Button</button>
+  </div>
+
+  <img src="https://via.placeholder.com/300" alt="Placeholder image">
+
+  <script type="module">
+    import { init } from './src/index.js';
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* Injected Logic (Global Scope) */
+@import url('https://fonts.cdnfonts.com/css/open-dyslexic');
+
+/* Font Family Overrides */
+html.af-font-dyslexia body * {
+    font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+html.af-font-readable body * {
+    font-family: 'Inter', 'Segoe UI', sans-serif !important;
+}
+
+/* Contrast Modes */
+html.af-augment-invert {
+    filter: invert(100%) !important;
+    background-color: #fff;
+    /* Flip background to ensure inversion works */
+}
+
+/* Fix images in invert mode so they look normal */
+html.af-augment-invert img,
+html.af-augment-invert video,
+html.af-augment-invert iframe {
+    filter: invert(100%) !important;
+}
+
+html.af-augment-grayscale {
+    filter: grayscale(100%) !important;
+}
+
+html.af-augment-high-contrast * {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+html.af-augment-high-contrast a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+html.af-augment-high-contrast button,
+html.af-augment-high-contrast input {
+    border: 2px solid #fff !important;
+    background: #000 !important;
+}
+
+html.af-augment-light-contrast * {
+    background-color: #f8fafc !important;
+    color: #334155 !important;
+    border-color: #cbd5e1 !important;
+}
+
+html.af-augment-dark-contrast * {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+}
+
+/* Custom Color Overrides (Powered by CSS Variables from JS Engine) */
+html[style*="--af-title-override"] h1,
+html[style*="--af-title-override"] h2,
+html[style*="--af-title-override"] h3,
+html[style*="--af-title-override"] h4,
+html[style*="--af-title-override"] h5,
+html[style*="--af-title-override"] h6 {
+    color: var(--af-title-override) !important;
+}
+
+html[style*="--af-text-override"] body * {
+    color: var(--af-text-override) !important;
+}
+
+html[style*="--af-bg-override"] body,
+html[style*="--af-bg-override"] body * {
+    background-color: var(--af-bg-override) !important;
+}
+
+/* Color Blindness Simulation (SVG Filters typically used here, simplified for CSS) */
+/* Note: True color blindness correction involves complex matrix filters usually injected as SVG */
+
+/* Cursor */
+html.af-cursor-big,
+html.af-cursor-big * {
+    cursor: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 3.5L19 12L10 14L5.5 21V3.5Z" fill="black" stroke="white" stroke-width="2"/></svg>') 0 0, auto !important;
+}
+
+/* Navigation Helpers */
+html.af-highlight-links a {
+    text-decoration: underline !important;
+    background: yellow !important;
+    color: black !important;
+}
+
+html.af-highlight-headings h1,
+html.af-highlight-headings h2,
+html.af-highlight-headings h3,
+html.af-highlight-headings h4,
+html.af-highlight-headings h5,
+html.af-highlight-headings h6 {
+    background: cyan !important;
+    color: black !important;
+    outline: 2px solid blue !important;
+}
+
+/* Motion */
+html.af-stop-animations *,
+html.af-stop-animations *:before,
+html.af-stop-animations *:after {
+    animation: none !important;
+    transition: none !important;
+}

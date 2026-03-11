@@ -1,0 +1,27 @@
+{
+  "name": "accessibility-fold-widget",
+  "version": "1.0.0",
+  "description": "Standalone accessibility widget for Accessibility Fold platform.",
+  "main": "./dist/accessibility-fold.umd.js",
+  "module": "./dist/accessibility-fold.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/accessibility-fold.es.js",
+      "require": "./dist/accessibility-fold.umd.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "author": "Accessibility Fold Team",
+  "license": "Proprietary",
+  "dependencies": {
+    "lucide": "^0.575.0"
+  }
+}
