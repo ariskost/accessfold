@@ -32,7 +32,7 @@ export class WidgetUI {
     trigger.setAttribute('aria-label', 'Accessibility Options');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-controls', 'af-panel');
-    trigger.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1" /><path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" /></svg>`; // Person Standing Icon
+    trigger.innerHTML = `<img src="https://accessfold.unionfold.com/logo/AccessFold_Logo_Light.png" alt="Accessibility Options" style="width: 28px; height: 28px; object-fit: contain; pointer-events: none;" />`; // Person Standing Icon
     trigger.onclick = () => this.togglePanel();
     shadow.appendChild(trigger);
 
@@ -47,7 +47,9 @@ export class WidgetUI {
 
     this.panel.innerHTML = `
       <div class="af-header">
-        <h2 class="af-title">Accessibility</h2>
+        <h2 class="af-title">
+          <img src="https://accessfold.unionfold.com/logo/AccessFold_Logo_Default.png" alt="Accessibility Fold" style="height: 24px; width: auto; object-fit: contain;" />
+        </h2>
         <button class="af-reset-btn" id="af-reset">Reset All</button>
       </div>
       <div class="af-body">

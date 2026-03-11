@@ -3,11 +3,8 @@
     <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
         <div class="col-span-2 md:col-span-1">
-           <div class="flex items-center gap-2 font-display font-bold text-2xl text-brand-900 mb-4">
-            <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-accent-500 rounded-lg flex items-center justify-center text-white">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1" /><path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" /></svg>
-            </div>
-            AccessFold
+           <div class="flex items-center gap-2 mb-4">
+             <img src="/logo/AccessFold_Logo_Default.png" alt="AccessFold Logo" class="h-9 w-auto object-contain" />
           </div>
           <p class="text-brand-500 text-[15px] leading-relaxed">
             Making the web accessible for everyone,<br>one line of code at a time.
