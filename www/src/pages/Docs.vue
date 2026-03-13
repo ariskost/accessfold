@@ -5,7 +5,7 @@
       <div class="prose max-w-none">
         <h2>Quick Start</h2>
         <p>Add this script to your site:</p>
-        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg"><code>&lt;script src="https://cdn.accessibilityfold.com/widget.js"&gt;&lt;/script&gt;
+        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg"><code>&lt;script src="https://accessfold.unionfold.com/widget/cdn/widget.js"&gt;&lt;/script&gt;
 &lt;script&gt;
   AccessibilityFold.init({
     color: '#4f46e5'

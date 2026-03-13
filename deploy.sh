@@ -33,6 +33,7 @@ npm install
 npm run build
 mkdir -p cdn
 cp dist/accessibility-fold.umd.js cdn/
+cp dist/accessibility-fold.umd.js cdn/widget.js
 cp dist/accessibility-fold.es.js cdn/
 cp dist/accessibility-fold.css cdn/ 2>/dev/null || true
 echo "  ✅ Widget CDN updated"
@@ -69,6 +70,6 @@ echo "✅ Deployment complete!"
 echo ""
 echo "  Website:   https://accessfold.unionfold.com/"
 echo "  API:       https://accessfold.unionfold.com/api/widget/config"
-echo "  Widget:    https://accessfold.unionfold.com/widget/cdn/accessibility-fold.umd.js"
+echo "  Widget:    https://accessfold.unionfold.com/widget/cdn/widget.js"
 echo "  Dashboard: https://accessfold.unionfold.com/dashboard/"
 echo "============================================"

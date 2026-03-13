@@ -29,7 +29,7 @@ Because the widget handles its own styling internally via Shadow DOM, no global 
 
 ## 🚀 External Platform Installation Guides
 
-For external users, the widget will be served via our CDN (e.g., `https://cdn.accessibilityfold.com/widget.js`). The initialization script requires a License Key associated with the user's verified domain.
+For external users, the widget will be served via our CDN (e.g., `https://accessfold.unionfold.com/widget/cdn/widget.js`). The initialization script requires a License Key associated with the user's verified domain.
 
 ### 1. HTML / CSS / JS (Custom Websites)
 
@@ -44,7 +44,7 @@ This is the standard installation method for custom-coded websites or platforms 
 **Example Code snippet:**
 ```html
 <!-- Accessibility Fold Widget -->
-<script src="https://cdn.accessibilityfold.com/widget.js" data-license="YOUR_LICENSE_KEY" data-auto-init="true" defer></script>
+<script src="https://accessfold.unionfold.com/widget/cdn/widget.js" data-license="YOUR_LICENSE_KEY" data-auto-init="true" defer></script>
 ```
 
 ---
