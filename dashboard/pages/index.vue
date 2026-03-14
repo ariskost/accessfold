@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h2 class="text-2xl font-bold mb-6">Dashboard Overview</h2>
+    <div class="mb-6 flex justify-between items-end">
+       <div>
+          <h2 class="text-2xl font-bold text-slate-900">Dashboard Overview</h2>
+          <p class="text-slate-500 mt-1">Welcome back, {{ auth.user?.name || 'User' }}</p>
+       </div>
+       <button @click="auth.logout" class="px-4 py-2 bg-white border border-slate-200 shadow-sm rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+          Sign out
+       </button>
+    </div>
     
     <!-- Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -49,7 +57,7 @@
                    </td>
                    <td class="px-6 py-4">
                       <div class="flex items-center gap-2">
-                        <div class="w-full bg-slate-200 rounded-full h-2 w-24">
+                        <div class="w-24 bg-slate-200 rounded-full h-2">
                            <div class="bg-indigo-600 h-2 rounded-full" :style="{width: domain.score + '%'}"></div>
                         </div>
                         <span class="text-sm font-bold">{{ domain.score }}</span>
@@ -69,5 +77,12 @@
 
 <script setup>
 import { useDomainStore } from '~/stores/domain';
+import { useAuthStore } from '~/stores/auth';
+
+definePageMeta({
+  middleware: 'auth'
+})
+
 const domainStore = useDomainStore();
+const auth = useAuthStore();
 </script>

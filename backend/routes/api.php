@@ -18,10 +18,11 @@ Route::group(['prefix' => 'widget', 'middleware' => 'throttle:60,1'], function (
     Route::post('/log', [WidgetController::class, 'logUsage']);
 });
 
-// Authentication Routes
-Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+// OAuth Routes
+Route::get('/auth/{provider}/redirect', [\App\Http\Controllers\SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/auth/{provider}/callback', [\App\Http\Controllers\SocialiteController::class, 'callback'])->name('socialite.callback');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -34,7 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('domains/{domain}/audits', [AuditController::class, 'store']);
 
     // AI Routes
-    Route::post('ai/alt-text', [App\Http\Controllers\AiController::class, 'generateAltText']);
-    Route::post('ai/simplify', [App\Http\Controllers\AiController::class, 'simplifyContent']);
-    Route::post('ai/fix', [App\Http\Controllers\AiController::class, 'suggestFix']);
+    Route::post('ai/alt-text', [\App\Http\Controllers\AiController::class, 'generateAltText']);
+    Route::post('ai/simplify', [\App\Http\Controllers\AiController::class, 'simplifyContent']);
+    Route::post('ai/fix', [\App\Http\Controllers\AiController::class, 'suggestFix']);
 });

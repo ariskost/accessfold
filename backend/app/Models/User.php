@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Subscription::class)->latestOfMany();
     }
+
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
 }

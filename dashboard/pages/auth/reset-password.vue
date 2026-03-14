@@ -9,39 +9,25 @@
         </div>
       </div>
       <h2 class="mt-6 text-center text-3xl font-extrabold text-slate-900">
-        Create an account
+        Create New Password
       </h2>
-      <p class="mt-2 text-center text-sm text-slate-600">
-        Already have an account?
-        <NuxtLink to="/auth/login" class="font-medium text-indigo-600 hover:text-indigo-500">
-          Sign in here
-        </NuxtLink>
-      </p>
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-slate-100">
-        <form class="space-y-6" @submit.prevent="handleRegister">
-          <div>
-            <label for="name" class="block text-sm font-medium text-slate-700"> Full Name </label>
-            <div class="mt-1">
-              <input id="name" v-model="form.name" name="name" type="text" autocomplete="name" required class="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-            </div>
-            <p v-if="errors.name" class="mt-2 text-sm text-red-600">{{ errors.name[0] }}</p>
-          </div>
-
+        <form class="space-y-6" @submit.prevent="handleReset">
           <div>
             <label for="email" class="block text-sm font-medium text-slate-700"> Email address </label>
             <div class="mt-1">
-              <input id="email" v-model="form.email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <input id="email" v-model="form.email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 bg-slate-100 text-slate-500 border border-slate-300 rounded-md shadow-sm focus:outline-none sm:text-sm" readonly />
             </div>
             <p v-if="errors.email" class="mt-2 text-sm text-red-600">{{ errors.email[0] }}</p>
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-slate-700"> Password </label>
+            <label for="password" class="block text-sm font-medium text-slate-700"> New Password </label>
             <div class="mt-1">
-              <input id="password" v-model="form.password" name="password" type="password" autocomplete="new-password" required class="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+              <input id="password" v-model="form.password" name="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
             <p v-if="errors.password" class="mt-2 text-sm text-red-600">{{ errors.password[0] }}</p>
           </div>
@@ -54,9 +40,9 @@
           </div>
 
           <div>
-            <button type="submit" :disabled="auth.isLoading" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
-              <span v-if="auth.isLoading">Creating account...</span>
-              <span v-else>Register</span>
+            <button type="submit" :disabled="isLoading" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
+              <span v-if="isLoading">Resetting...</span>
+              <span v-else>Reset Password</span>
             </button>
           </div>
         </form>
@@ -66,35 +52,55 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
-import { useAuthStore } from '~/stores/auth'
+import { reactive, ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 definePageMeta({
   layout: 'empty',
   middleware: 'guest'
 })
 
-const auth = useAuthStore()
+const route = useRoute()
+const router = useRouter()
+const config = useRuntimeConfig()
 
 const form = reactive({
-  name: '',
-  email: '',
+  token: route.query.token || '',
+  email: route.query.email || '',
   password: '',
   password_confirmation: ''
 })
 
 const errors = ref({})
+const isLoading = ref(false)
 
-const handleRegister = async () => {
+const handleReset = async () => {
   errors.value = {}
+  isLoading.value = true
   try {
-    await auth.register(form)
+    await $fetch('/reset-password', {
+      method: 'POST',
+      baseURL: config.public.apiBase,
+      body: form,
+      credentials: 'include'
+    })
+    alert('Password has been successfully reset. You can now login.')
+    router.push('/auth/login')
   } catch (error) {
     if (error.response && error.response.status === 422) {
       errors.value = error.response._data.errors
     } else {
-      alert('An error occurred during registration.')
+      alert('An error occurred during password reset.')
     }
+  } finally {
+    isLoading.value = false
   }
 }
+
+onMounted(() => {
+  if (!form.token || !form.email) {
+    alert('Invalid reset parameters.')
+    router.push('/auth/login')
+  }
+})
 </script>

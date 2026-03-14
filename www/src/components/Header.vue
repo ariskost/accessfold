@@ -46,17 +46,23 @@
           >
             <div v-if="isMenuOpen" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden z-50 p-2">
               
+              <!-- User Greeting (Auth Only) -->
+              <div v-if="isAuthenticated" class="p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 mb-1 rounded-t-lg">
+                 <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Signed in as</p>
+                 <p class="text-sm font-bold text-slate-900 dark:text-white truncate">{{ user?.name || user?.email }}</p>
+              </div>
+
               <!-- Quick Links -->
               <div class="p-2 space-y-1">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a v-if="isAuthenticated" :href="getUrl('/dashboard')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LayoutDashboard class="w-4 h-4 text-slate-400" />
                   {{ t('menu.dashboard') }}
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a v-if="isAuthenticated" :href="getUrl('/settings')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <Settings class="w-4 h-4 text-slate-400" />
                   {{ t('menu.settings') }}
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a :href="getUrl('/help')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LifeBuoy class="w-4 h-4 text-slate-400" />
                   {{ t('menu.help') }}
                 </a>
@@ -103,18 +109,27 @@
               <div class="h-px bg-slate-100 dark:bg-slate-800 my-1"></div>
 
               <!-- Actions (Login & Get Started) -->
-              <div class="p-2 space-y-1">
-                <a href="http://localhost:3000/auth/login" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+              <div v-if="!isAuthenticated" class="p-2 space-y-1">
+                <a :href="getUrl('/auth/login')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LogIn class="w-4 h-4 text-slate-400" />
                   {{ t('nav.login') }}
                 </a>
-                <a href="http://localhost:3000/auth/register" class="flex items-center justify-between px-3 py-2 text-sm bg-brand-900 dark:bg-white text-white dark:text-slate-900 hover:bg-brand-800 dark:hover:bg-slate-100 rounded-lg transition-colors font-medium mt-1 group">
+                <a :href="getUrl('/auth/register')" class="flex items-center justify-between px-3 py-2 text-sm bg-brand-900 dark:bg-white text-white dark:text-slate-900 hover:bg-brand-800 dark:hover:bg-slate-100 rounded-lg transition-colors font-medium mt-1 group">
                   <span class="flex items-center gap-2">
                     <Rocket class="w-4 h-4" />
                     {{ t('nav.getStarted') }}
                   </span>
                   <ArrowRight class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </a>
+              </div>
+
+              <div v-else class="p-2 space-y-1">
+                <button @click="logout" class="w-full flex items-center justify-between px-3 py-2 text-sm bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg transition-colors font-medium group">
+                  <span class="flex items-center gap-2">
+                    <LogOut class="w-4 h-4" />
+                    Log out
+                  </span>
+                </button>
               </div>
             </div>
           </Transition>
@@ -129,6 +144,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { useI18n } from '@/composables/useI18n'
+import { useAuth } from '@/composables/useAuth'
 import { 
   CircleUserRound, 
   Sun, 
@@ -137,14 +153,21 @@ import {
   Settings, 
   LifeBuoy,
   LogIn,
+  LogOut,
   Rocket,
   ArrowRight
 } from 'lucide-vue-next'
 
 const { t, locale, setLocale } = useI18n()
+const { user, isAuthenticated, checkAuth, logout } = useAuth()
+
 const isMenuOpen = ref(false)
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+const getUrl = (path) => {
+  return import.meta.env.DEV ? `http://localhost:3000${path}` : path
+}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -152,8 +175,6 @@ const toggleMenu = () => {
 
 const closeMenuIfClickedOutside = (event) => {
   if (isMenuOpen.value && !event.target.closest('.user-dropdown-container')) {
-    // We add a wrapper class or check if the click target is outside the header entirely. 
-    // Usually clicking outside dropdown closes it.
     if(!event.target.closest('header')) {
        isMenuOpen.value = false;
     }
@@ -161,6 +182,7 @@ const closeMenuIfClickedOutside = (event) => {
 }
 
 onMounted(() => {
+  checkAuth()
   document.addEventListener('click', closeMenuIfClickedOutside)
 })
 
