@@ -59,7 +59,7 @@ export const useAuthStore = defineStore('auth', {
         credentials: 'include',
       })
       await this.fetchUser()
-      useRouter().push('/dashboard')
+      useRouter().push('/')
     },
     async register(data) {
       await this.csrfCookie()
@@ -71,7 +71,7 @@ export const useAuthStore = defineStore('auth', {
         credentials: 'include',
       })
       await this.fetchUser()
-      useRouter().push('/dashboard')
+      useRouter().push('/')
     },
     async logout() {
       const config = useRuntimeConfig()

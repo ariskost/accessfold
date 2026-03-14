@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if (process.client) {
     if (auth.isAuthenticated) {
-      return navigateTo('/dashboard')
+      return navigateTo('/')
     }
   }
 })

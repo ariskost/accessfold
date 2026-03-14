@@ -6,8 +6,8 @@ const isAuthenticated = ref(false)
 export function useAuth() {
   const checkAuth = async () => {
     try {
-      // In Vite, we'll try to fetch the user if the cookie is active
-      const response = await fetch('http://localhost:8000/api/user', {
+      const apiUrl = import.meta.env.DEV ? 'http://localhost:8000/api/user' : '/api/user'
+      const response = await fetch(apiUrl, {
         headers: {
           'Accept': 'application/json'
         },
@@ -30,7 +30,8 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      await fetch('http://localhost:8000/logout', {
+      const logoutUrl = import.meta.env.DEV ? 'http://localhost:8000/logout' : '/logout'
+      await fetch(logoutUrl, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

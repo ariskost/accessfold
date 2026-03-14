@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss'
   ],
   app: {
+    baseURL: '/dashboard/',
     head: {
       title: 'Accessibility Fold Dashboard',
       meta: [
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
   // css: ['./assets/css/main.css'],
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE_URL || 'http://localhost:8000',
+      apiBase: process.env.API_BASE_URL || (process.env.NODE_ENV === 'production' ? 'https://accessfold.unionfold.com' : 'http://localhost:8000'),
     }
   },
   postcss: {
