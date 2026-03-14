@@ -167,13 +167,13 @@ const installationTabs = [
     id: 'html',
     label: 'HTML / Webflow',
     filename: 'index.html',
-    code: '<!-- Insert before closing </body> tag -->\n<script src="https://cdn.accessfold.com/widget.js"><\/script>\n<script>\n  AccessibilityFold.init({\n    clientId: "YOUR_API_KEY"\n  });\n<\/script>'
+    code: '<!-- Insert before closing </body> tag -->\n<script src="https://accessfold.unionfold.com/widget/cdn/widget.js"><\/script>\n<script>\n  AccessibilityFold.init({\n    clientId: "YOUR_API_KEY"\n  });\n<\/script>'
   },
   {
     id: 'wordpress',
     label: 'WordPress',
     filename: 'functions.php',
-    code: '// Add to your child-theme functions.php or use a snippet plugin\nadd_action("wp_footer", function() {\n  echo \'<script src="https://cdn.accessfold.com/widget.js"><\/script>\';\n  echo \'<script>AccessibilityFold.init({ clientId: "WP_KEY" });<\/script>\';\n});'
+    code: '// Add to your child-theme functions.php or use a snippet plugin\nadd_action("wp_footer", function() {\n  echo \'<script src="https://accessfold.unionfold.com/widget/cdn/widget.js"><\/script>\';\n  echo \'<script>AccessibilityFold.init({ clientId: "WP_KEY" });<\/script>\';\n});'
   }
 ];
 

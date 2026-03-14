@@ -46,7 +46,7 @@ npm install
 npm run build
 mkdir -p ~/accessfold.unionfold.com/public_html
 rm -rf ~/accessfold.unionfold.com/public_html/* 2>/dev/null || true
-cp -r dist/* ~/accessfold.unionfold.com/public_html/
+cp -a dist/. ~/accessfold.unionfold.com/public_html/
 echo "  ✅ Website updated"
 
 # ── DASHBOARD (Nuxt SSR) ──
