@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import './assets/css/style.css'
 import App from './App.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { createHead } from '@vueuse/head'
 
 // Import Pages (We'll create these next)
@@ -15,7 +15,7 @@ import Integrations from '@/pages/Integrations.vue'
 import Contact from '@/pages/Contact.vue'
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: [
         { path: '/', component: Home },
         { path: '/features', component: Features },
