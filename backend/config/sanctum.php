@@ -69,6 +69,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Route Prefix
+    |--------------------------------------------------------------------------
+    |
+    | The prefix for Sanctum's routes. This defaults to 'sanctum'. By redefining
+    | it here, we ensure Nginx proxies /api/ routes flawlessly on production.
+    */
+
+    'prefix' => 'api/sanctum',
+
+    /*
+    |--------------------------------------------------------------------------
     | Sanctum Middleware
     |--------------------------------------------------------------------------
     |

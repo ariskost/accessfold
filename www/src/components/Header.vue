@@ -54,15 +54,15 @@
 
               <!-- Quick Links -->
               <div class="p-2 space-y-1">
-                <a v-if="isAuthenticated" :href="getUrl('/dashboard')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a v-if="isAuthenticated" :href="getUrl('/dashboard/')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LayoutDashboard class="w-4 h-4 text-slate-400" />
                   {{ t('menu.dashboard') }}
                 </a>
-                <a v-if="isAuthenticated" :href="getUrl('/settings')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a v-if="isAuthenticated" :href="getUrl('/dashboard/settings')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <Settings class="w-4 h-4 text-slate-400" />
                   {{ t('menu.settings') }}
                 </a>
-                <a :href="getUrl('/help')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a :href="getUrl('/dashboard/help')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LifeBuoy class="w-4 h-4 text-slate-400" />
                   {{ t('menu.help') }}
                 </a>
@@ -110,11 +110,11 @@
 
               <!-- Actions (Login & Get Started) -->
               <div v-if="!isAuthenticated" class="p-2 space-y-1">
-                <a :href="getUrl('/auth/login')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <a :href="getUrl('/dashboard/auth/login')" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors">
                   <LogIn class="w-4 h-4 text-slate-400" />
                   {{ t('nav.login') }}
                 </a>
-                <a :href="getUrl('/auth/register')" class="flex items-center justify-between px-3 py-2 text-sm bg-brand-900 dark:bg-white text-white dark:text-slate-900 hover:bg-brand-800 dark:hover:bg-slate-100 rounded-lg transition-colors font-medium mt-1 group">
+                <a :href="getUrl('/dashboard/auth/register')" class="flex items-center justify-between px-3 py-2 text-sm bg-brand-900 dark:bg-white text-white dark:text-slate-900 hover:bg-brand-800 dark:hover:bg-slate-100 rounded-lg transition-colors font-medium mt-1 group">
                   <span class="flex items-center gap-2">
                     <Rocket class="w-4 h-4" />
                     {{ t('nav.getStarted') }}

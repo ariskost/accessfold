@@ -39,3 +39,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('ai/simplify', [\App\Http\Controllers\AiController::class, 'simplifyContent']);
     Route::post('ai/fix', [\App\Http\Controllers\AiController::class, 'suggestFix']);
 });
+
+require __DIR__.'/auth.php';

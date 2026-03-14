@@ -44,15 +44,15 @@ export const useAuthStore = defineStore('auth', {
     },
     async csrfCookie() {
       const config = useRuntimeConfig()
-      await $fetch('/sanctum/csrf-cookie', {
+      await $fetch('/api/sanctum/csrf-cookie', {
         baseURL: config.public.apiBase,
         credentials: 'include',
       })
     },
-    async login(credentials) {
+    async login(credentials: any) {
       await this.csrfCookie()
       const config = useRuntimeConfig()
-      await $fetch('/login', {
+      await $fetch('/api/login', {
         method: 'POST',
         baseURL: config.public.apiBase,
         body: credentials,
@@ -61,10 +61,10 @@ export const useAuthStore = defineStore('auth', {
       await this.fetchUser()
       useRouter().push('/')
     },
-    async register(data) {
+    async register(data: any) {
       await this.csrfCookie()
       const config = useRuntimeConfig()
-      await $fetch('/register', {
+      await $fetch('/api/register', {
         method: 'POST',
         baseURL: config.public.apiBase,
         body: data,
@@ -75,7 +75,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async logout() {
       const config = useRuntimeConfig()
-      await $fetch('/logout', {
+      await $fetch('/api/logout', {
         method: 'POST',
         baseURL: config.public.apiBase,
         credentials: 'include',
@@ -84,7 +84,7 @@ export const useAuthStore = defineStore('auth', {
       this.isAuthenticated = false
       useRouter().push('/auth/login')
     },
-    loginWithProvider(provider) {
+    loginWithProvider(provider: any) {
       const config = useRuntimeConfig()
       // Redirect to Laravel socialite route
       window.location.href = `${config.public.apiBase}/api/auth/${provider}/redirect`

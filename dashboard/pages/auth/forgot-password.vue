@@ -68,7 +68,7 @@ const handleForgot = async () => {
   error.value = ''
   isLoading.value = true
   try {
-    const response = await $fetch('/forgot-password', {
+    const response = await $fetch('/api/forgot-password', {
       method: 'POST',
       baseURL: config.public.apiBase,
       body: { email: email.value },
