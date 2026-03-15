@@ -25,7 +25,7 @@
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
-          <a href="http://localhost:3000/auth/register" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-brand-600 dark:bg-brand-500 rounded-xl overflow-hidden shadow-glow hover:shadow-glass hover:bg-brand-500 transition-all duration-300 ease-in-out hover:-translate-y-1">
+          <a :href="getUrl('/dashboard/auth/register')" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-brand-600 dark:bg-brand-500 rounded-xl overflow-hidden shadow-glow hover:shadow-glass hover:bg-brand-500 transition-all duration-300 ease-in-out hover:-translate-y-1">
             <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
             <span class="relative">{{ t('home.hero.cta1') }}</span>
           </a>
@@ -147,6 +147,10 @@ import { ref, computed } from 'vue';
 import { useI18n } from '@/composables/useI18n'
 
 const { t } = useI18n()
+
+const getUrl = (path) => {
+  return import.meta.env.DEV ? `http://localhost:3000${path}` : path
+}
 
 // Implementation Tabs Logic
 const activeInstallTab = ref('npm');

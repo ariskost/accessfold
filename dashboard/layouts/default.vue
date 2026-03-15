@@ -56,7 +56,6 @@ const authStore = useAuthStore();
 const route = useRoute();
 
 onMounted(() => {
-    authStore.init();
     if (!authStore.isAuthenticated && route.path !== '/auth/login') {
         navigateTo('/auth/login');
     }

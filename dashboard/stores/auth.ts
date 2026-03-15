@@ -1,4 +1,10 @@
 import { defineStore } from 'pinia'
+import { useCookie, useRuntimeConfig, useRouter } from 'nuxt/app'
+
+const getCsrfHeader = (): Record<string, string> => {
+  const token = useCookie('XSRF-TOKEN').value
+  return token ? { 'X-XSRF-TOKEN': decodeURIComponent(token as string) } : {}
+}
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -56,6 +62,7 @@ export const useAuthStore = defineStore('auth', {
         method: 'POST',
         baseURL: config.public.apiBase,
         body: credentials,
+        headers: { ...getCsrfHeader(), 'Accept': 'application/json' },
         credentials: 'include',
       })
       await this.fetchUser()
@@ -68,6 +75,7 @@ export const useAuthStore = defineStore('auth', {
         method: 'POST',
         baseURL: config.public.apiBase,
         body: data,
+        headers: { ...getCsrfHeader(), 'Accept': 'application/json' },
         credentials: 'include',
       })
       await this.fetchUser()
@@ -78,6 +86,7 @@ export const useAuthStore = defineStore('auth', {
       await $fetch('/api/logout', {
         method: 'POST',
         baseURL: config.public.apiBase,
+        headers: { ...getCsrfHeader(), 'Accept': 'application/json' },
         credentials: 'include',
       })
       this.user = null
